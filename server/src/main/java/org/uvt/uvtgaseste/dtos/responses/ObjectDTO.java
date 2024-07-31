@@ -1,4 +1,4 @@
-package org.uvt.uvtgaseste.dtos;
+package org.uvt.uvtgaseste.dtos.responses;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,12 +6,15 @@ import org.uvt.uvtgaseste.models.ObjectEntity;
 import org.uvt.uvtgaseste.models.Place;
 import org.uvt.uvtgaseste.models.Type;
 
+import java.util.Date;
+
 @Getter @Setter
 public class ObjectDTO {
     private String name;
     private Type type;
     private String colorHex;
     private String finderMail;
+    private Date foundOn;
     private Place place;
     public ObjectDTO(ObjectEntity objectEntity) {
         this.name = objectEntity.getName();

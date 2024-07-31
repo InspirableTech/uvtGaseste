@@ -3,9 +3,9 @@ package org.uvt.uvtgaseste.services;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.uvt.uvtgaseste.dtos.ObjectDTO;
-import org.uvt.uvtgaseste.dtos.LostDTO;
-import org.uvt.uvtgaseste.dtos.RenderDTO;
+import org.uvt.uvtgaseste.dtos.responses.ObjectDTO;
+import org.uvt.uvtgaseste.dtos.requests.LostDTO;
+import org.uvt.uvtgaseste.dtos.responses.RenderDTO;
 import org.uvt.uvtgaseste.models.ObjectEntity;
 import org.uvt.uvtgaseste.models.Place;
 import org.uvt.uvtgaseste.repositories.ObjectRepository;
@@ -27,20 +27,9 @@ public class ObjectService {
     public List<RenderDTO> getAllPlaces () {
         List<RenderDTO> renderElements = new ArrayList<>();
         for(ObjectDTO objectDTO : this.getAllObjects()) {
-            renderElements.add(new RenderDTO(objectDTO.getPlace(), this.objectsNumberByPlace(objectDTO.getPlace())));
+            renderElements.add(new RenderDTO(objectDTO.getFoundOn(), objectDTO.getPlace(), objectDTO.getType()));
         }
         return renderElements;
-    }
-
-    private int objectsNumberByPlace (Place place) {
-        int counter = 0;
-        List<ObjectEntity> objectsByPlace = this.objectRepository.getObjectEntitiesByPlace(place);
-        for(ObjectEntity objectEntity : objectsByPlace) {
-            if(objectEntity.getPlace().equals(place)) {
-                counter++;
-            }
-        }
-        return counter;
     }
 
     public List<ObjectDTO> getAllObjects () {

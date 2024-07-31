@@ -3,7 +3,10 @@ package org.uvt.uvtgaseste.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.uvt.uvtgaseste.dtos.requests.LoginRequest;
+import org.uvt.uvtgaseste.dtos.responses.AuthResponse;
 import org.uvt.uvtgaseste.models.UserDTO;
+import org.uvt.uvtgaseste.services.AuthService;
 import org.uvt.uvtgaseste.services.UserService;
 
 import java.util.List;
@@ -13,7 +16,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private AuthService authService;
     @GetMapping
     private ResponseEntity<List<UserDTO>> getAllUsers () {
         return ResponseEntity.ok(this.userService.getAllUsers());
@@ -37,5 +41,19 @@ public class UserController {
     @DeleteMapping("/{userId}")
     private ResponseEntity<Boolean> deleteUser (Long id) {
         return ResponseEntity.ok(this.userService.deleteUSer(id));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser (@RequestBody LoginRequest loginRequest) {
+        String token = authService.login(loginRequest);
+        return ResponseEntity.ok(new AuthResponse(token));
+    }
+    @GetMapping("/oauth2/code/google")
+    public String getLoginInfo() {
+        return "loginSuccess";
+    }
+    @GetMapping("/loginFailure")
+    public String getLoginFailure() {
+        return "loginFailure";
     }
 }

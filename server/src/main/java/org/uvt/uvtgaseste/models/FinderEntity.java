@@ -16,7 +16,9 @@ public class FinderEntity {
     private String uvtMail;
     @Column
     private String phoneNumber;
-
+    @Column
+    @Enumerated()
+    private Role role;
     public FinderEntity () {
 
     }

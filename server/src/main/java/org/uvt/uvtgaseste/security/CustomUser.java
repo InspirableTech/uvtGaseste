@@ -11,7 +11,8 @@ import java.util.Set;
 
 @Setter @Getter
 public class CustomUser implements UserDetails {
-    private String user;
+    private Long id;
+    private String username;
     private String password;
     private String oauth2provider;
     private String oauth2providerId;
@@ -31,8 +32,8 @@ public class CustomUser implements UserDetails {
         return null;
     }
 
-    public CustomUser (String user, String password, String oauth2provider, String oauth2providerId) {
-        this.user = user;
+    public CustomUser (String username, String password, String oauth2provider, String oauth2providerId) {
+        this.username = username;
         this.password = password;
         this.oauth2provider = oauth2provider;
         this.oauth2providerId = oauth2providerId;

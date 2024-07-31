@@ -3,10 +3,9 @@ package org.uvt.uvtgaseste.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.uvt.uvtgaseste.dtos.ObjectDTO;
-import org.uvt.uvtgaseste.dtos.LostDTO;
-import org.uvt.uvtgaseste.dtos.RenderDTO;
-import org.uvt.uvtgaseste.models.Place;
+import org.uvt.uvtgaseste.dtos.responses.ObjectDTO;
+import org.uvt.uvtgaseste.dtos.requests.LostDTO;
+import org.uvt.uvtgaseste.dtos.responses.RenderDTO;
 import org.uvt.uvtgaseste.services.ObjectService;
 
 import java.util.List;
